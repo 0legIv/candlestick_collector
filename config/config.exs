@@ -21,8 +21,12 @@ config :logger, :console,
 
 config :candlestick_collector, CandlestickCollector.Scheduler,
   jobs: [
-    # Every minute
-    {"* * * * *", {CandlestickCollector.Jobs, :get_candlesticks, []}},
+    {"* * * * *", {CandlestickCollector.Scheduler.Jobs, :get_candlestick, ["1m"]}},
+    {"*/5 * * * *", {CandlestickCollector.Scheduler.Jobs, :get_candlestick, ["5m"]}},
+    {"0 * * * *", {CandlestickCollector.Scheduler.Jobs, :get_candlestick, ["1h"]}},
+    {"0 */4 * * *", {CandlestickCollector.Scheduler.Jobs, :get_candlestick, ["4h"]}},
+    {"0 0 * * *", {CandlestickCollector.Scheduler.Jobs, :get_candlestick, ["1d"]}},
+    {"0 0 * * 0", {CandlestickCollector.Scheduler.Jobs, :get_candlestick, ["1w"]}}
   ]
 
 # Use Jason for JSON parsing in Phoenix

@@ -8,10 +8,14 @@ defmodule CandlestickCollector.Application do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    mongo_params = Application.get_env(:candlestick_collector, :mongo)
+    IO.inspect mongo_params
+
     children = [
       # Start the endpoint when the application starts
       CandlestickCollectorWeb.Endpoint,
-      CandlestickCollector.Scheduler
+      CandlestickCollector.Scheduler,
+      worker(Mongo, [mongo_params], id: :mongo)
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

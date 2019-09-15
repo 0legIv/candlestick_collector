@@ -34,8 +34,10 @@ defmodule CandlestickCollector.MixProject do
     [
       {:phoenix, "~> 1.4.9"},
       {:phoenix_pubsub, "~> 1.1"},
+      {:httpoison, "~> 1.5"},
       {:gettext, "~> 0.11"},
       {:mongodb, "~> 0.5.1"},
+      {:poolboy, "~> 1.5.1"},
       {:distillery, "~> 2.0"},
       {:quantum, "~> 2.3.4"},
       {:timex, "~> 3.6.1"},
