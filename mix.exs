@@ -38,7 +38,7 @@ defmodule CandlestickCollector.MixProject do
       {:distillery, "~> 2.0"},
       {:quantum, "~> 2.3.4"},
       {:timex, "~> 3.6.1"},
-      {:jason, "~> 1.0"},
+      {:jason, "~> 1.0"}
     ]
   end
 end
