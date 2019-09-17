@@ -18,7 +18,6 @@ ARG MIX_ENV=prod
 ENV HOME=app \
     MIX_ENV=${MIX_ENV} \
     MONGODB="mongodb://mongo:27017/candlestick_collector" \
-    PORT=4001 \
     REPLACE_OS_VARS=true 
 
 WORKDIR /${HOME}

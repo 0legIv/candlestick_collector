@@ -11,22 +11,11 @@ defmodule CandlestickCollector.Application do
     mongo_params = Application.get_env(:candlestick_collector, :mongo)
 
     children = [
-      # Start the endpoint when the application starts
-      CandlestickCollectorWeb.Endpoint,
       CandlestickCollector.Scheduler,
       worker(Mongo, [mongo_params], id: :mongo)
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: CandlestickCollector.Supervisor]
     Supervisor.start_link(children, opts)
-  end
-
-  # Tell Phoenix to update the endpoint configuration
-  # whenever the application is updated.
-  def config_change(changed, _new, removed) do
-    CandlestickCollectorWeb.Endpoint.config_change(changed, removed)
-    :ok
   end
 end

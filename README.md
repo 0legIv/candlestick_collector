@@ -1,18 +1,22 @@
 # CandlestickCollector
 
-To start your Phoenix server:
+To start the application in prod:
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server`
+  * `docker build -t candlestick_collector .`
+  * `docker-compose up`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+To start the application in dev:
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+You need to have mongodb installed or run it in the docker container.
+The default mongodb connection string in dev config: `mongodb://127.0.0.1:27017/candlestick_collector`
 
-## Learn more
+  * `docker run -d -p 27017:27017 -v ~/data:/data/db mongo`
+  * `iex -S mix`
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+To run the tests:
+
+  * `mix test`
+
+Environment Variables:
+
+  * `MONGODB` - specifies the mongodb connection string

@@ -1,9 +1,5 @@
 use Mix.Config
 
-config :match_manager, CandlestickCollectorWeb.Endpoint,
-  http: [:inet6, port: "${PORT}"],
-  server: true
-
 config :logger, level: :info
 
 config :candlestick_collector,
