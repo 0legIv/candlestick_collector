@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  candlestick_collector:
+    image: candlestick_collector
+    depends_on:
+      - mongo
+
+  mongo: 
+    image: mongo
+    ports:
+      - "27017:27017"

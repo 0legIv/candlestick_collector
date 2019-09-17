@@ -9,7 +9,6 @@ defmodule CandlestickCollector.Application do
     import Supervisor.Spec, warn: false
 
     mongo_params = Application.get_env(:candlestick_collector, :mongo)
-    IO.inspect mongo_params
 
     children = [
       # Start the endpoint when the application starts

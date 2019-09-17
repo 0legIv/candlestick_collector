@@ -1,9 +1,8 @@
 defmodule CandlestickCollector.Handler.Requests do
   require Logger
-  
+
   def get_last_trades_by_instrument_and_time(end_time, start_time, count) do
-    request =
-      "https://test.deribit.com/api/v2/public/get_last_trades_by_instrument_and_time"
+    request = "https://test.deribit.com/api/v2/public/get_last_trades_by_instrument_and_time"
 
     params = [
       params: %{
@@ -18,15 +17,16 @@ defmodule CandlestickCollector.Handler.Requests do
 
     with {:ok, %HTTPoison.Response{body: body}} <- do_request(request, params),
          {:ok, json} <- Jason.decode(body) do
-        json
-      else
-        {:error, %HTTPoison.Error{reason: reason}} ->
-          {:error, reason}
+      {:ok, json}
+    else
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        Logger.error("HTTPoison error, reason: #{inspect(reason)}")
+        {:error, reason}
 
-        {:error, %Jason.DecodeError{position: position}} ->
-          Logger.error("Json decode error, position: #{position}")
-          {:error, :decode_error}
-      end
+      {:error, %Jason.DecodeError{position: position}} ->
+        Logger.error("Json decode error, position: #{position}")
+        {:error, :decode_error}
+    end
   end
 
   defp do_request(request, params),

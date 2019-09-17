@@ -9,7 +9,6 @@ config :logger, level: :info
 config :candlestick_collector,
   mongo: [
     name: :mongo,
-    pool: DBConnection.Poolboy,
     url: "${MONGODB}",
     pool_size: 2,
     pool_overflow: 10,
